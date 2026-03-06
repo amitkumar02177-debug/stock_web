@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
 <title>Stock List</title>
@@ -33,6 +34,20 @@ h1{
 text-align:center;
 }
 
+#searchBox{
+display:block;
+margin:20px auto;
+padding:8px;
+width:300px;
+font-size:16px;
+}
+
+#updateTime{
+text-align:center;
+margin-bottom:15px;
+color:gray;
+}
+
 </style>
 
 </head>
@@ -41,7 +56,13 @@ text-align:center;
 
 <h1>Available Stock</h1>
 
-<table>
+<div id="updateTime">
+Last Updated: {{ last_update }}
+</div>
+
+<input type="text" id="searchBox" placeholder="Search product..." onkeyup="searchProduct()">
+
+<table id="stockTable">
 
 <tr>
 <th>Product Name</th>
@@ -58,6 +79,39 @@ text-align:center;
 {% endfor %}
 
 </table>
+
+
+<script>
+
+function searchProduct() {
+
+let input = document.getElementById("searchBox").value.toLowerCase();
+
+let table = document.getElementById("stockTable");
+
+let rows = table.getElementsByTagName("tr");
+
+for (let i = 1; i < rows.length; i++) {
+
+let product = rows[i].getElementsByTagName("td")[0];
+
+if (product) {
+
+let text = product.textContent.toLowerCase();
+
+if (text.indexOf(input) > -1) {
+rows[i].style.display = "";
+} else {
+rows[i].style.display = "none";
+}
+
+}
+
+}
+
+}
+
+</script>
 
 </body>
 </html>
