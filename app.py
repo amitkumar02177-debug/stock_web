@@ -5,7 +5,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-DATA_FILE = "stock.json"
+DATA_FILE = "stocks.json"
 
 
 @app.route("/")
@@ -40,3 +40,4 @@ def update_stock():
 
 if __name__ == "__main__":
     app.run()
+
