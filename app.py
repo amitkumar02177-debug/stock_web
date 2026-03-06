@@ -4,7 +4,7 @@ import os
 
 app = Flask(__name__)
 
-DATA_FILE = "stock.json"
+DATA_FILE = "stocks.json"
 
 
 @app.route("/")
@@ -28,3 +28,4 @@ def update_stock():
         json.dump(data, f)
 
     return jsonify({"status": "success"})
+
