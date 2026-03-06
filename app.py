@@ -11,6 +11,8 @@ DATA_FILE = "stock.json"
 @app.route("/")
 def home():
 
+    last_update = datetime.now().strftime("%d %b %Y %H:%M:%S")
+
     if not os.path.exists(DATA_FILE):
         products = []
     else:
@@ -21,7 +23,7 @@ def home():
                 products = []
             else:
                 products = json.loads(content)
-            last_update = datetime.now().strftime("%d %b %Y %H:%M:%S")
+
     return render_template("index.html", products=products, last_update=last_update)
 
 
@@ -38,4 +40,3 @@ def update_stock():
 
 if __name__ == "__main__":
     app.run()
-
