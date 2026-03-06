@@ -4,7 +4,7 @@ import os
 
 app = Flask(__name__)
 
-DATA_FILE = "stock.json"
+DATA_FILE = "stocks.json"
 
 @app.route("/")
 def home():
@@ -21,3 +21,4 @@ def home():
                 products = json.loads(content)
 
     return render_template("index.html", products=products)
+
