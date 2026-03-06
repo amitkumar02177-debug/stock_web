@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 import json
 import os
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -20,8 +21,8 @@ def home():
                 products = []
             else:
                 products = json.loads(content)
-
-    return render_template("index.html", products=products)
+            last_update = datetime.now().strftime("%d %b %Y %H:%M:%S")
+    return render_template("index.html", products=products, last_update=last_update)
 
 
 @app.route("/update-stock", methods=["POST"])
@@ -37,3 +38,4 @@ def update_stock():
 
 if __name__ == "__main__":
     app.run()
+
